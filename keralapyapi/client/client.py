@@ -1,20 +1,3 @@
-# Pyrogram - Telegram MTProto API Client Library for Python
-# Copyright (C) 2017-2019 Dan Tès <https://github.com/delivrance>
-#
-# This file is part of Pyrogram.
-#
-# Pyrogram is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Lesser General Public License as published
-# by the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Pyrogram is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Lesser General Public License for more details.
-#
-# You should have received a copy of the GNU Lesser General Public License
-# along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
 
 import asyncio
 import logging
@@ -31,17 +14,17 @@ from pathlib import Path
 from signal import signal, SIGINT, SIGTERM, SIGABRT
 from typing import Union, List
 
-from pyrogram.api import functions, types
-from pyrogram.api.core import TLObject
-from pyrogram.client.handlers import DisconnectHandler
-from pyrogram.client.handlers.handler import Handler
-from pyrogram.client.methods.password.utils import compute_check
-from pyrogram.crypto import AES
-from pyrogram.errors import (
+from keralapyapi.api import functions, types
+from keralapyapi.api.core import TLObject
+from keralapyapi.client.handlers import DisconnectHandler
+from keralapyapi.client.handlers.handler import Handler
+from keralapyapi.client.methods.password.utils import compute_check
+from keralapyapi.crypto import AES
+from keralapyapi.errors import (
     PhoneMigrate, NetworkMigrate, SessionPasswordNeeded,
     FloodWait, PeerIdInvalid, VolumeLocNotFound, UserMigrate, ChannelPrivate, AuthBytesInvalid,
     BadRequest)
-from pyrogram.session import Auth, Session
+from keralapyapi.session import Auth, Session
 from .ext import utils, Syncer, BaseClient, Dispatcher
 from .ext.utils import ainput
 from .methods import Methods
@@ -818,14 +801,14 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 4
 
-                from pyrogram import Client
+                from keralapyapi import Client
 
-                app = Client("my_account")
-                app.start()
+                bot = Client("my_account")
+                bot.start()
 
                 ...  # Call API methods
 
-                app.stop()
+                bot.stop()
         """
         is_authorized = await self.connect()
 
@@ -860,7 +843,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 8
 
-                from pyrogram import Client
+                from keralapyapi import Client
 
                 app = Client("my_account")
                 app.start()
@@ -890,7 +873,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 8
 
-                from pyrogram import Client
+                from keralapyapi import Client
 
                 app = Client("my_account")
                 app.start()
@@ -934,7 +917,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 13
 
-                from pyrogram import Client
+                from keralapyapi import Client
 
                 app1 = Client("account1")
                 app2 = Client("account2")
@@ -979,7 +962,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 7
 
-                from pyrogram import Client
+                from keralapyapi import Client
 
                 app = Client("my_account")
 
@@ -1021,7 +1004,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 8
 
-                from pyrogram import Client, MessageHandler
+                from keralapyapi import Client, MessageHandler
 
                 def dump(client, message):
                     print(message)
@@ -1056,7 +1039,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 11
 
-                from pyrogram import Client, MessageHandler
+                from keralapyapi import Client, MessageHandler
 
                 def dump(client, message):
                     print(message)
@@ -1085,7 +1068,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 9
 
-                from pyrogram import Client
+                from keralapyapi import Client
 
                 app = Client("my_account")
 
@@ -1114,7 +1097,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 6
 
-                from pyrogram import Client
+                from keralapyapi import Client
 
                 app = Client("my_account")
 
@@ -1143,29 +1126,29 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 10,14,18,22
 
-                from pyrogram import Client
+                from keralapyapi import Client
 
                 app = Client("my_account")
 
                 with app:
                     # Default combined mode: Markdown + HTML
-                    app.send_message("haskell", "1. **markdown** and <i>html</i>")
+                    app.send_message("mario", "1. **markdown** and <i>html</i>")
 
                     # Force Markdown-only, HTML is disabled
                     app.set_parse_mode("markdown")
-                    app.send_message("haskell", "2. **markdown** and <i>html</i>")
+                    app.send_message("mario", "2. **markdown** and <i>html</i>")
 
                     # Force HTML-only, Markdown is disabled
                     app.set_parse_mode("html")
-                    app.send_message("haskell", "3. **markdown** and <i>html</i>")
+                    app.send_message("mario", "3. **markdown** and <i>html</i>")
 
                     # Disable the parser completely
                     app.set_parse_mode(None)
-                    app.send_message("haskell", "4. **markdown** and <i>html</i>")
+                    app.send_message("mario", "4. **markdown** and <i>html</i>")
 
                     # Bring back the default combined mode
                     app.set_parse_mode()
-                    app.send_message("haskell", "5. **markdown** and <i>html</i>")
+                    app.send_message("mario", "5. **markdown** and <i>html</i>")
         """
 
         if parse_mode not in self.PARSE_MODES:
